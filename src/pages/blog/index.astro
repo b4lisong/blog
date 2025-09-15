@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="All Blog Posts">
+  <h1>All Blog Posts</h1>
+
+  {sortedPosts.length > 0 ? (
+    <div class="posts-list">
+      {sortedPosts.map((post) => (
+        <article class="post-item">
+          <a href={`/blog/${post.slug}/`}>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <div class="post-meta">
+              <time>{post.data.pubDate.toLocaleDateString()}</time>
+              {post.data.tags && (
+                <div class="tags">
+                  {post.data.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <p>No posts published yet.</p>
+  )}
+</BaseLayout>
+
+<style>
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .post-item {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .post-item:last-child {
+    border-bottom: none;
+  }
+
+  .post-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .post-item h2 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    transition: color 0.2s;
+  }
+
+  .post-item:hover h2 {
+    color: #666;
+  }
+
+  .post-item p {
+    margin: 0 0 0.5rem 0;
+    color: #666;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .post-meta time {
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #666;
+  }
+</style>
