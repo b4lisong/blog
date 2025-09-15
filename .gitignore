@@ -27,3 +27,5 @@ result-*
 Thumbs.db
 claude-backup-*/
 claude-backup-submodule-*/
+.claude/
+claude-code-template/
