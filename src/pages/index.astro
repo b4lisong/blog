@@ -13,7 +13,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
     <div class="posts-list">
       {sortedPosts.map((post) => (
         <article class="post-item">
-          <a href={`/blog/${post.slug}/`}>
+          <a href={`/${post.slug}/`}>
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
             <div class="post-meta">
