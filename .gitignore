@@ -25,3 +25,5 @@ result-*
 # OS
 .DS_Store
 Thumbs.db
+claude-backup-*/
+claude-backup-submodule-*/
