@@ -3,112 +3,102 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
-const sortedPosts = posts
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3); // Show only latest 3 posts on homepage
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="Welcome to My Blog">
-  <section class="hero">
-    <h1>Welcome to My Blog</h1>
-    <p>A modern blog built with Astro, powered by Nix, and deployed with GitHub Pages.</p>
-  </section>
-  
-  <section class="recent-posts">
-    <h2>Recent Posts</h2>
-    {sortedPosts.length > 0 ? (
-      <div class="posts-grid">
-        {sortedPosts.map((post) => (
-          <article class="post-card">
-            <a href={`/blog/${post.slug}/`}>
-              <h3>{post.data.title}</h3>
-              <p>{post.data.description}</p>
+<BaseLayout title="My Blog">
+  <h1>My Blog</h1>
+
+  {sortedPosts.length > 0 ? (
+    <div class="posts-list">
+      {sortedPosts.map((post) => (
+        <article class="post-item">
+          <a href={`/blog/${post.slug}/`}>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <div class="post-meta">
               <time>{post.data.pubDate.toLocaleDateString()}</time>
-            </a>
-          </article>
-        ))}
-      </div>
-    ) : (
-      <p>No posts yet. Check back soon!</p>
-    )}
-    
-    {sortedPosts.length > 0 && (
-      <a href="/blog" class="view-all">View all posts →</a>
-    )}
-  </section>
+              {post.data.tags && (
+                <div class="tags">
+                  {post.data.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <p>No posts published yet.</p>
+  )}
 </BaseLayout>
 
 <style>
-  .hero {
-    text-align: center;
-    margin: 3rem 0;
-  }
-  
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #222;
-  }
-  
-  .hero p {
-    font-size: 1.1rem;
-    color: #666;
-  }
-  
-  .recent-posts h2 {
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-  
-  .posts-grid {
-    display: grid;
-    gap: 1.5rem;
+  h1 {
     margin-bottom: 2rem;
   }
-  
-  .post-card {
-    border: 1px solid #eee;
-    padding: 1.5rem;
-    border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
-  
-  .post-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  .post-item {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
   }
-  
-  .post-card a {
+
+  .post-item:last-child {
+    border-bottom: none;
+  }
+
+  .post-item a {
     text-decoration: none;
     color: inherit;
+    display: block;
   }
-  
-  .post-card h3 {
+
+  .post-item h2 {
     margin: 0 0 0.5rem 0;
     color: #333;
+    transition: color 0.2s;
   }
-  
-  .post-card p {
+
+  .post-item:hover h2 {
+    color: #666;
+  }
+
+  .post-item p {
     margin: 0 0 0.5rem 0;
     color: #666;
   }
-  
-  .post-card time {
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .post-meta time {
     font-size: 0.9rem;
     color: #999;
   }
-  
-  .view-all {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #f0f0f0;
-    text-decoration: none;
-    border-radius: 4px;
-    color: #333;
-    transition: background 0.2s;
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
-  
-  .view-all:hover {
-    background: #e0e0e0;
+
+  .tag {
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #666;
   }
 </style>
