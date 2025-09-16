@@ -1,0 +1,65 @@
+---
+import NavLink from './NavLink.astro';
+
+interface Props {
+  variant?: 'header' | 'hero';
+}
+
+const { variant = 'header' } = Astro.props;
+
+// Navigation data
+const navItems = [
+  {
+    href: '/',
+    icon: 'fa-home',
+    title: 'Home',
+    hoverColor: 'mauve' as const
+  },
+  {
+    href: '/blog',
+    icon: 'fa-edit',
+    title: 'Blog',
+    hoverColor: 'blue' as const
+  },
+  {
+    href: 'https://linkedin.com/in/jlmitra',
+    icon: 'fa-brands fa-linkedin',
+    title: 'LinkedIn',
+    hoverColor: 'teal' as const
+  },
+  {
+    href: 'https://github.com/b4lisong',
+    icon: 'fa-brands fa-github',
+    title: 'GitHub',
+    hoverColor: 'mauve' as const
+  },
+  {
+    href: 'https://x.com/B4L1s0ng',
+    icon: 'fa-brands fa-twitter',
+    title: 'Twitter',
+    hoverColor: 'blue' as const
+  }
+];
+
+const containerClasses = {
+  header: 'flex space-x-6',
+  hero: 'flex justify-center space-x-12'
+};
+
+const linkProps = {
+  header: { size: 'md' as const, showLabel: false },
+  hero: { size: 'lg' as const, showLabel: true }
+};
+---
+
+<nav class={containerClasses[variant]}>
+  {navItems.map((item) => (
+    <NavLink
+      href={item.href}
+      icon={item.icon}
+      hoverColor={item.hoverColor}
+      size={linkProps[variant].size}
+      showLabel={linkProps[variant].showLabel}
+    />
+  ))}
+</nav>

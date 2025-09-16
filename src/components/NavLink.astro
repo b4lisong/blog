@@ -1,0 +1,46 @@
+---
+interface Props {
+  href: string;
+  icon: string;
+  title: string;
+  hoverColor: 'mauve' | 'blue' | 'teal';
+  size?: 'sm' | 'md' | 'lg';
+  showLabel?: boolean;
+}
+
+const { href, icon, title, hoverColor, size = 'md', showLabel = false } = Astro.props;
+
+const isExternalLink = href.startsWith('http');
+
+const sizeClasses = {
+  sm: 'text-sm',
+  md: 'text-lg',
+  lg: 'text-2xl'
+};
+
+const hoverColorClasses = {
+  mauve: 'hover:text-mauve',
+  blue: 'hover:text-blue',
+  teal: 'hover:text-teal'
+};
+
+const underlineColorClasses = {
+  mauve: 'bg-mauve',
+  blue: 'bg-blue',
+  teal: 'bg-teal'
+};
+---
+
+<a
+  href={href}
+  class={`text-text no-underline ${hoverColorClasses[hoverColor]} transition-all duration-300 hover:scale-105 relative group ${sizeClasses[size]} ${showLabel ? 'flex flex-col items-center gap-2' : ''}`}
+  title={title}
+  target={isExternalLink ? "_blank" : undefined}
+  rel={isExternalLink ? "noopener noreferrer" : undefined}
+>
+  <i class={`fas ${icon}`}></i>
+  {showLabel && (
+    <span class="text-sm font-medium">{title}</span>
+  )}
+  <span class={`absolute -bottom-1 left-0 w-0 h-0.5 ${underlineColorClasses[hoverColor]} transition-all duration-300 group-hover:w-full`}></span>
+</a>

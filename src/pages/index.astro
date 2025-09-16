@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
@@ -8,21 +9,22 @@ const recentPosts = posts
   .slice(0, 3); // Show only latest 3 posts on homepage
 ---
 
-<BaseLayout title="Welcome to My Blog">
+<BaseLayout title="balisong.dev">
   <section class="text-center my-16 animate-fade-in">
-    <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-mauve via-blue to-teal bg-clip-text text-transparent animate-float">
-      Welcome to My Blog
+    <h1 class="text-5xl font-bold mb-4 text-text">
+      hello, I'm balisong!
     </h1>
-    <p class="text-xl text-text max-w-2xl mx-auto leading-relaxed">
-      A modern blog built with <span class="text-peach font-semibold">Astro</span>,
-      powered by <span class="text-green font-semibold">Nix</span>,
-      and deployed with <span class="text-lavender font-semibold">GitHub Pages</span>.
+    <p class="text-lg text-subtext1 mb-6">
+      AI | infosec | devsecops | homelab
     </p>
+    <div class="mt-8">
+      <Navigation variant="hero" />
+    </div>
   </section>
 
   <section class="animate-slide-up">
     <div class="flex items-center gap-3 mb-8">
-      <h2 class="text-3xl font-bold text-text">Recent Posts</h2>
+      <h2 class="text-3xl font-bold text-text">recent posts</h2>
       <div class="h-1 flex-1 bg-gradient-to-r from-surface0 to-transparent rounded"></div>
     </div>
 
