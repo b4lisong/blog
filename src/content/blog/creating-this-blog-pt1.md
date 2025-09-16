@@ -26,10 +26,11 @@ reusable components
 being a lemming (pls accept me)
 
 ### Why Nix flakes and `direnv`?
-- This one would be harder to justify if I weren't already using Nix
-  - Reduced setup friction as a result
 - I like reproducibility and declarative things
 - I develop across multiple machines and want consistency
+- Reduced setup friction as a result
+- Totally optional, but even for a single developer, solves the "it works on my machine"
+problem better than Docker, in my experience
 
 ## Prerequisites
 
@@ -668,3 +669,9 @@ Visit your custom domain URL
 - **TypeScript**: Type safety
 - **MDX support**: Enhanced markdown
 - **Sitemap generation**: SEO optimization
+
+## Next Steps
+You've likely noticed that the styles are quite different from what you're seeing
+on my site, and that stylesheets are duplicated across different pages in this tutorial
+I'll be using Tailwind CSS v4 for a more modern look-and-feel, with Claude doing most of
+the heavy lifting. Stay tuned for Part 2!
