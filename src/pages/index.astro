@@ -9,106 +9,33 @@ const recentPosts = posts
 ---
 
 <BaseLayout title="Welcome to My Blog">
-  <section class="hero">
-    <h1>Welcome to My Blog</h1>
-    <p>A modern blog built with Astro, powered by Nix, and deployed with GitHub Pages.</p>
+  <section class="text-center my-12">
+    <h1 class="text-4xl font-bold mb-4 text-gray-900">Welcome to My Blog</h1>
+    <p class="text-lg text-gray-600">A modern blog built with Astro, powered by Nix, and deployed with GitHub Pages.</p>
   </section>
 
-  <section class="recent-posts">
-    <h2>Recent Posts</h2>
+  <section>
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Recent Posts</h2>
     {recentPosts.length > 0 ? (
-      <div class="posts-grid">
+      <div class="grid gap-6 mb-8">
         {recentPosts.map((post) => (
-          <article class="post-card">
-            <a href={`/blog/${post.slug}/`}>
-              <h3>{post.data.title}</h3>
-              <p>{post.data.description}</p>
-              <time>{post.data.pubDate.toLocaleDateString()}</time>
+          <article class="border border-gray-200 p-6 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
+            <a href={`/blog/${post.slug}/`} class="no-underline text-inherit">
+              <h3 class="text-xl font-semibold mb-2 text-gray-800">{post.data.title}</h3>
+              <p class="mb-2 text-gray-600">{post.data.description}</p>
+              <time class="text-sm text-gray-500">{post.data.pubDate.toLocaleDateString()}</time>
             </a>
           </article>
         ))}
       </div>
     ) : (
-      <p>No posts yet. Check back soon!</p>
+      <p class="text-gray-600">No posts yet. Check back soon!</p>
     )}
 
     {recentPosts.length > 0 && (
-      <a href="/blog" class="view-all">View all posts →</a>
+      <a href="/blog" class="inline-block px-4 py-2 bg-gray-100 text-gray-800 no-underline rounded transition-colors duration-200 hover:bg-gray-200">
+        View all posts →
+      </a>
     )}
   </section>
 </BaseLayout>
-
-<style>
-  .hero {
-    text-align: center;
-    margin: 3rem 0;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #222;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-    color: #666;
-  }
-
-  .recent-posts h2 {
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-
-  .posts-grid {
-    display: grid;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .post-card {
-    border: 1px solid #eee;
-    padding: 1.5rem;
-    border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .post-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .post-card a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .post-card h3 {
-    margin: 0 0 0.5rem 0;
-    color: #333;
-  }
-
-  .post-card p {
-    margin: 0 0 0.5rem 0;
-    color: #666;
-  }
-
-  .post-card time {
-    font-size: 0.9rem;
-    color: #999;
-  }
-
-  .view-all {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #f0f0f0;
-    text-decoration: none;
-    border-radius: 4px;
-    color: #333;
-    transition: background 0.2s;
-  }
-
-  .view-all:hover {
-    background: #e0e0e0;
-  }
-</style>
