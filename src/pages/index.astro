@@ -9,33 +9,60 @@ const recentPosts = posts
 ---
 
 <BaseLayout title="Welcome to My Blog">
-  <section class="text-center my-12">
-    <h1 class="text-4xl font-bold mb-4 text-gray-900">Welcome to My Blog</h1>
-    <p class="text-lg text-gray-600">A modern blog built with Astro, powered by Nix, and deployed with GitHub Pages.</p>
+  <section class="text-center my-16 animate-fade-in">
+    <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-mauve via-blue to-teal bg-clip-text text-transparent animate-float">
+      Welcome to My Blog
+    </h1>
+    <p class="text-xl text-subtext1 max-w-2xl mx-auto leading-relaxed">
+      A modern blog built with <span class="text-peach font-semibold">Astro</span>,
+      powered by <span class="text-green font-semibold">Nix</span>,
+      and deployed with <span class="text-lavender font-semibold">GitHub Pages</span>.
+    </p>
   </section>
 
-  <section>
-    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Recent Posts</h2>
+  <section class="animate-slide-up">
+    <div class="flex items-center gap-3 mb-8">
+      <h2 class="text-3xl font-bold text-text">Recent Posts</h2>
+      <div class="h-1 flex-1 bg-gradient-to-r from-surface0 to-transparent rounded"></div>
+    </div>
+
     {recentPosts.length > 0 ? (
-      <div class="grid gap-6 mb-8">
-        {recentPosts.map((post) => (
-          <article class="border border-gray-200 p-6 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
-            <a href={`/blog/${post.slug}/`} class="no-underline text-inherit">
-              <h3 class="text-xl font-semibold mb-2 text-gray-800">{post.data.title}</h3>
-              <p class="mb-2 text-gray-600">{post.data.description}</p>
-              <time class="text-sm text-gray-500">{post.data.pubDate.toLocaleDateString()}</time>
+      <div class="grid gap-6 mb-12">
+        {recentPosts.map((post, index) => (
+          <article class="group bg-mantle border border-surface0 p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-surface1 animate-slide-up" style={`animation-delay: ${index * 0.1}s`}>
+            <a href={`/blog/${post.slug}/`} class="no-underline text-inherit block">
+              <h3 class="text-2xl font-bold mb-3 text-text group-hover:text-blue transition-colors duration-300">
+                {post.data.title}
+              </h3>
+              <p class="mb-4 text-subtext1 leading-relaxed line-clamp-2">
+                {post.data.description}
+              </p>
+              <div class="flex justify-between items-center">
+                <time class="text-sm text-subtext0 bg-surface0 px-3 py-1 rounded-full">
+                  {post.data.pubDate.toLocaleDateString()}
+                </time>
+                <span class="text-mauve text-sm font-medium group-hover:text-blue transition-colors duration-300">
+                  Read more →
+                </span>
+              </div>
             </a>
           </article>
         ))}
       </div>
     ) : (
-      <p class="text-gray-600">No posts yet. Check back soon!</p>
+      <div class="text-center py-16">
+        <div class="text-6xl mb-4">📝</div>
+        <p class="text-subtext1 text-lg">No posts yet. Check back soon!</p>
+      </div>
     )}
 
     {recentPosts.length > 0 && (
-      <a href="/blog" class="inline-block px-4 py-2 bg-gray-100 text-gray-800 no-underline rounded transition-colors duration-200 hover:bg-gray-200">
-        View all posts →
-      </a>
+      <div class="text-center">
+        <a href="/blog" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-mauve to-blue text-crust no-underline rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-mauve/25">
+          View all posts
+          <span class="text-lg">→</span>
+        </a>
+      </div>
     )}
   </section>
 </BaseLayout>

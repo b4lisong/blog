@@ -7,30 +7,57 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 ---
 
 <BaseLayout title="All Blog Posts">
-  <h1 class="text-3xl font-bold mb-8 text-gray-900">All Blog Posts</h1>
-
-  {sortedPosts.length > 0 ? (
-    <div class="flex flex-col gap-8">
-      {sortedPosts.map((post) => (
-        <article class="pb-6 border-b border-gray-200 last:border-b-0">
-          <a href={`/blog/${post.slug}/`} class="no-underline text-inherit block">
-            <h2 class="text-2xl font-semibold mb-2 text-gray-800 transition-colors duration-200 hover:text-gray-600">{post.data.title}</h2>
-            <p class="mb-2 text-gray-600">{post.data.description}</p>
-            <div class="flex justify-between items-center gap-4">
-              <time class="text-sm text-gray-500">{post.data.pubDate.toLocaleDateString()}</time>
-              {post.data.tags && (
-                <div class="flex gap-2 flex-wrap">
-                  {post.data.tags.map((tag) => (
-                    <span class="bg-gray-100 px-2 py-1 rounded text-xs text-gray-600">{tag}</span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </a>
-        </article>
-      ))}
+  <div class="animate-fade-in">
+    <div class="flex items-center gap-4 mb-12">
+      <h1 class="text-4xl font-bold text-text">All Blog Posts</h1>
+      <div class="h-1 flex-1 bg-gradient-to-r from-surface0 to-transparent rounded"></div>
+      <span class="text-subtext0 text-sm bg-surface0 px-3 py-1 rounded-full">
+        {sortedPosts.length} posts
+      </span>
     </div>
-  ) : (
-    <p class="text-gray-600">No posts published yet.</p>
-  )}
+
+    {sortedPosts.length > 0 ? (
+      <div class="flex flex-col gap-8">
+        {sortedPosts.map((post, index) => (
+          <article class="group bg-mantle border border-surface0 p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-surface1 animate-slide-up" style={`animation-delay: ${index * 0.05}s`}>
+            <a href={`/blog/${post.slug}/`} class="no-underline text-inherit block">
+              <h2 class="text-2xl font-bold mb-3 text-text group-hover:text-blue transition-colors duration-300">
+                {post.data.title}
+              </h2>
+              <p class="mb-4 text-subtext1 leading-relaxed">
+                {post.data.description}
+              </p>
+              <div class="flex justify-between items-center gap-4 flex-wrap">
+                <time class="text-sm text-subtext0 bg-surface0 px-3 py-1 rounded-full">
+                  {post.data.pubDate.toLocaleDateString()}
+                </time>
+                <div class="flex items-center gap-4">
+                  {post.data.tags && (
+                    <div class="flex gap-2 flex-wrap">
+                      {post.data.tags.map((tag) => (
+                        <span class="bg-gradient-to-r from-mauve/20 to-blue/20 border border-mauve/30 text-mauve px-3 py-1 rounded-full text-xs font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <span class="text-blue text-sm font-medium group-hover:text-mauve transition-colors duration-300">
+                    Read more →
+                  </span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-24 animate-slide-up">
+        <div class="text-8xl mb-6">📚</div>
+        <h2 class="text-2xl font-bold text-text mb-4">No posts published yet</h2>
+        <p class="text-subtext1 text-lg max-w-md mx-auto">
+          This is where your amazing content will live. Check back soon for updates!
+        </p>
+      </div>
+    )}
+  </div>
 </BaseLayout>
