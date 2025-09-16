@@ -11,7 +11,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
     <div class="flex items-center gap-4 mb-12">
       <h1 class="text-4xl font-bold text-text">All Blog Posts</h1>
       <div class="h-1 flex-1 bg-gradient-to-r from-surface0 to-transparent rounded"></div>
-      <span class="text-subtext0 text-sm bg-surface0 px-3 py-1 rounded-full">
+      <span class="text-subtext1 text-sm bg-surface0 px-3 py-1 rounded-full">
         {sortedPosts.length} posts
       </span>
     </div>
@@ -28,7 +28,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
                 {post.data.description}
               </p>
               <div class="flex justify-between items-center gap-4 flex-wrap">
-                <time class="text-sm text-subtext0 bg-surface0 px-3 py-1 rounded-full">
+                <time class="text-sm text-subtext1 bg-surface0 px-3 py-1 rounded-full">
                   {post.data.pubDate.toLocaleDateString()}
                 </time>
                 <div class="flex items-center gap-4">
@@ -54,7 +54,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
       <div class="text-center py-24 animate-slide-up">
         <div class="text-8xl mb-6">📚</div>
         <h2 class="text-2xl font-bold text-text mb-4">No posts published yet</h2>
-        <p class="text-subtext1 text-lg max-w-md mx-auto">
+        <p class="text-text text-lg max-w-md mx-auto">
           This is where your amazing content will live. Check back soon for updates!
         </p>
       </div>

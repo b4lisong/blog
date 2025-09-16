@@ -27,11 +27,11 @@ const { title, description = "My awesome blog powered by Astro" } = Astro.props;
           My Blog
         </a>
         <div class="flex space-x-6">
-          <a href="/" class="text-subtext1 no-underline hover:text-mauve transition-all duration-300 hover:scale-105 relative group">
+          <a href="/" class="text-text no-underline hover:text-mauve transition-all duration-300 hover:scale-105 relative group">
             Home
             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-mauve transition-all duration-300 group-hover:w-full"></span>
           </a>
-          <a href="/blog" class="text-subtext1 no-underline hover:text-blue transition-all duration-300 hover:scale-105 relative group">
+          <a href="/blog" class="text-text no-underline hover:text-blue transition-all duration-300 hover:scale-105 relative group">
             Blog
             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue transition-all duration-300 group-hover:w-full"></span>
           </a>
@@ -42,7 +42,7 @@ const { title, description = "My awesome blog powered by Astro" } = Astro.props;
       <slot />
     </main>
     <footer class="border-t border-surface0 pt-6 mt-16 text-center">
-      <p class="text-subtext0 text-sm">
+      <p class="text-subtext1 text-sm">
         &copy; 2025 My Blog. Built with
         <span class="text-peach font-medium">Astro</span>
         & styled with
