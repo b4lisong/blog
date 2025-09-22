@@ -1,7 +1,7 @@
 ---
 title: 'Modular host architecture for Nix - Part 1'
 description: 'Transforming a monolithic flake.nix into a sophisticated architecture-based organization'
-pubDate: 2025-09-16
+pubDate: 2025-09-22
 ---
 
 ## Overview
@@ -26,8 +26,9 @@ of management and maintenance starts to increase.
 - **Testing integration** - Built-in eval tests and NixOS tests
 - **Composable modules** - Flexible module combinations per host
 
-Neither of us would recommend it for a small number of machines, but if you are currently
-(or anticipate being) burdened by a typical, hard-coded, monolothic flake like I am,
+Neither of us would recommend it for a small number of machines, but if you have (or anticipate having)
+a large number of Nix systems, and are currently
+(or anticipate being) burdened by a typical, hard-coded, monolothic flake,
 read on!
 
 ## The Problem
@@ -604,7 +605,7 @@ mkdir -p outputs/aarch64-linux/tests
 **CRITICAL**: This file is the heart of the new architecture. 
 It must also correctly import our `variables` (`myvars`) and pass them through the system.
 
-**File: `outputs/default.nix`** (new)
+**File: `outputs/default.nix`**
 ```nix
 {
   self,
@@ -1030,9 +1031,9 @@ nix eval .#nixosConfigurations.rpi4b.config.system.build.toplevel --show-trace
 ```
 
 #### After Phase 4 (Integration):
-**NOTE: I'm using just recipes to make this process easier. My justfile contains: ***
+**NOTE: I'm using just recipes to make this process easier. My justfile contains: **
 ```
-just check
+  just check
 
   Auto-detects platform and runs appropriate check command:
 
