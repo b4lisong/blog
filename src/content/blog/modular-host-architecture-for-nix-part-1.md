@@ -157,11 +157,11 @@ https://github.com/nix-community/haumea is a Nix library that provides automatic
 ```
 **Result: { "file1" = <file1.nix output>; "file2" = <file2.nix output>; }**
 
-  In Our Architecture
+  In My Architecture
 
-  1. Scans outputs/{arch}/src/ directories
+  1. Scans `outputs/{arch}/src/` directories
   2. Imports each .nix file automatically
-  3. Passes common arguments (inputs, lib, myvars, etc.) to each file
+  3. Passes common arguments (`inputs`, `lib`, `myvars`, etc.) to each file
   4. Collects outputs from each file into a single attribute set
   5. Merges configurations using lib.attrsets.mergeAttrsList
 
@@ -170,7 +170,7 @@ https://github.com/nix-community/haumea is a Nix library that provides automatic
   ✅ Automatic Discovery
 
   - Before: Manual host listing in flake.nix
-  - After: Drop file in outputs/{arch}/src/ → automatically available
+  - After: Drop file in `outputs/{arch}/src/` → automatically available
 
   ✅ Scalability
 
