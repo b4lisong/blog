@@ -149,10 +149,12 @@ https://github.com/nix-community/haumea is a Nix library that provides automatic
 ##### Core Functionality
 
 **Haumea scans a directory and loads all .nix files**
+```nix
   data = haumea.lib.load {
     src = ./src;           # Directory to scan
     inputs = args;         # Arguments passed to each file
   };
+```
 **Result: { "file1" = <file1.nix output>; "file2" = <file2.nix output>; }**
 
   In Our Architecture
