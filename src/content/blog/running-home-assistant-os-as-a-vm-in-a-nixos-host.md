@@ -53,6 +53,7 @@ Both the NixOS host and HomeAssistant VM get separate IP addresses from the same
 ## NixOS Configuration
 
 ### Step 1: Enable Incus with ZFS Storage
+Skip the ZFS part if you aren't using ZFS, but define a storage pool somewhere.
 
 ```nix
 # In hosts/linux-nas/default.nix
@@ -212,7 +213,7 @@ incus profile device add bridgeprofile eth0 nic \
 wget https://github.com/home-assistant/operating-system/releases/download/15.2/haos_ova-15.2.qcow2.xz
 
 # Extract the image
-xz -d "haos_generic--64-${HAOS_VERSION}.qcow2.xz"
+xz -d "haos_ova-15.2.qcow2.xz"
 
 # Get incus-migrate
 wget https://github.com/lxc/incus/releases/latest/download/bin.linux.incus-migrate.x86_64
