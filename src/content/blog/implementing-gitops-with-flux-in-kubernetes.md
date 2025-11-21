@@ -19,7 +19,7 @@ unnecessary complexity, and eventually landing on something simple that actually
 
 Before GitOps, my homelab Kubernetes setup was... functional, I guess:
 
-- **k3s cluster** running on NixOS (single-node because I'm not made of money)
+- **k3s cluster** running on NixOS (single-node, for now)
 - **Traefik** ingress controller (the k3s default)
 - **Homepage** dashboard application
 - **kubectl apply -k** whenever I remembered to deploy things
@@ -216,7 +216,7 @@ spec:
 
 ### Step 5: The Complexity Trap (Oh No)
 
-Here's where I got ~stupid~ ambitious. I tried to implement **image automation**—the feature where
+Here's where I got ambitious. I tried to implement **image automation**—the feature where
 Flux automatically updates container images when new versions are released.
 
 This required resources like:
